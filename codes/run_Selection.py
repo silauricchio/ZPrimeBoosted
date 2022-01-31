@@ -5,6 +5,7 @@ path_trees = 'https://atlas-opendata.web.cern.ch/atlas-opendata/samples/2020/1la
 
 samples = ['data', 'tt', 'Vjets', 'single_top', 'Diboson', 'ZPrime400', 'ZPrime500', 'ZPrime750', 'ZPrime1000', 'ZPrime1250', 'ZPrime1500', 'ZPrime1750', 'ZPrime2000', 'ZPrime2250', 'ZPrime2500', 'ZPrime2750', 'ZPrime3000']
 #samples = ['single_top']
+#samples = ['data', 'tt', 'Vjets', 'Diboson', 'ZPrime400', 'ZPrime500', 'ZPrime750', 'ZPrime1000', 'ZPrime1250', 'ZPrime1500', 'ZPrime1750', 'ZPrime2000', 'ZPrime2250', 'ZPrime2500', 'ZPrime2750', 'ZPrime3000'] 
 
 Lumi = 10000 #pb-1
 
@@ -13,6 +14,8 @@ ROOT.gInterpreter.Declare(
     float Define_Weight(float xsection, float sumweights, float mcweight, float SF_ele, float SF_muon, float SF_lepTrigg, float SF_pu, float SF_btag) 
     {      
         float SF = SF_ele*SF_muon*SF_lepTrigg*SF_pu*SF_btag;
+        //float weight = abs(mcweight)/mcweight;
+        //weight = SF*mcweight/sumweights; 
         float weight = SF*mcweight/sumweights;
         weight = weight*xsection;
         
@@ -228,6 +231,7 @@ ROOT.gInterpreter.Declare(
     
 
 file_histos =  ROOT.TFile('../run/file_histos.root', 'RECREATE')
+#file_histos =  ROOT.TFile('../run/file_histo_singletop.root', 'RECREATE')  
 
 for s in samples:
     ntuples = ROOT.TChain('mini')

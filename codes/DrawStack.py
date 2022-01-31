@@ -2,8 +2,16 @@ import ROOT
 import matplotlib.pyplot as plt
 import numpy as np
 
-masses = ["400","500","750","1000","1250","1500"]
-ZPsColors = [ROOT.kBlue, ROOT.kAzure-2, ROOT.kViolet, ROOT.kMagenta, ROOT.kPink-1, ROOT.kYellow-2]
+masses = [
+#"400","500","750",
+"1000"
+#,"1250","1500"
+]
+ZPsColors = [
+#ROOT.kBlue, ROOT.kAzure-2, 
+ROOT.kViolet
+#, ROOT.kMagenta, ROOT.kOrange-1, ROOT.kYellow-2
+]
 
 f = ROOT.TFile.Open("../run/file_histos.root")
 
@@ -48,7 +56,7 @@ stack.GetXaxis().SetTitle("m^{Z->tt}_{visible} [GeV]")
 stack.GetYaxis().SetTitle("Events/60 GeV")
 stack.GetYaxis().SetLabelSize(0.04)
 stack.GetYaxis().SetTitleSize(0.045)
-#stack.SetMaximum(200)
+stack.SetMaximum(30)
 stack.SetMinimum(1)
 
 # Draw data
@@ -61,8 +69,9 @@ data.Draw("E SAME")
 # Draw signals
 for h, color in zip(ZPs, ZPsColors): 
     h.SetLineWidth(1)
-    h.SetLineColor(1)
-    h.SetFillColor(color)
+    h.SetLineStyle(9)
+    h.SetLineColor(color)
+    h.Scale(10)
     h.Draw("HIST SAME")
 
 #Define the legend
@@ -78,7 +87,8 @@ legend.AddEntry(st, "Single top", "f")
 legend.AddEntry(Vjets, "V+jets", "f")
 legend.AddEntry(dib, "Diboson", "f")
 for h_signal, mass in zip(h_signals, masses):
-    legend.AddEntry(h_signal, "Z' " + mass ,"f")
+    #legend.AddEntry(h_signal, "Z' " + mass ,"f")
+    legend.AddEntry(h_signal, "Z' " + mass + " x10","f") 
 
 legend.Draw()
 
@@ -94,7 +104,7 @@ text.SetTextSize(0.04)
 text.DrawLatex(0.21, 0.80, "#sqrt{{s}} = 13 TeV, {:.0f} fb^{{-1}}".format(10))
  
 # Save the plot
-c.SaveAs("../run/Stack_Zprime_norm.pdf")
+c.SaveAs("../run/Stack_Zprime_norm_Z100.pdf")
 
 
 print(data.Integral("width")/(st.Integral("width") + tt.Integral("width") + dib.Integral("width") + Vjets.Integral("width")))

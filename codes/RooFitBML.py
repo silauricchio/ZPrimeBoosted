@@ -4,7 +4,7 @@ import sys
 def rooPart1(stringa):
 
 	# Open files
-	f = ROOT.TFile.Open("file_histos.root")
+	f = ROOT.TFile.Open("../run/file_histos.root")
 
 	#x Axis variable
 	mass = ROOT.RooRealVar("mass","mass plot",400,1600,"GeV")
@@ -35,9 +35,9 @@ def rooPart1(stringa):
 
 
 	# tot numb events observed
-	nev = ROOT.RooRealVar("n","n events",0,data.Integral("width")*2)
-	nev.setVal(data.Integral("width"))
-	nev.setConstant(ROOT.kTRUE)
+	N_obs = ROOT.RooRealVar("n","n events",0,data.Integral("width")*2)
+	N_obs.setVal(data.Integral("width"))
+	N_obs.setConstant(ROOT.kTRUE)
 
 	# sig and bkcg evts oberved
 	ntt = ROOT.RooRealVar("ntt","tt events",0,tt.Integral("width")*2)
@@ -66,26 +66,28 @@ def rooPart1(stringa):
         mu = ROOT.RooRealVar("mu","mu", 0 , 100)
 
         #total bkg normalization factor
-        k = ROOT.RooRealVar("k", "k", -10, 10)
-        #k.setVal(0.930433686828)
-        k.setVal(1.)
+        k = ROOT.RooRealVar("k", "k", 0, 10.)
+        k.setVal(0.930433686828)
+        #k.setVal(1.)
         k.setConstant(ROOT.kTRUE)
 
-	#signal
+	#signal yields *mu
 	signal = ROOT.RooFormulaVar("signal", "mu*nZp_mass_point", ROOT.RooArgList(mu,nZp_mass_point))
 
-        #bkgs
+        #bkgs yields
         bkg_dib = ROOT.RooFormulaVar("bkg_dib", "k*ndib",  ROOT.RooArgList(k,ndib))
         bkg_st = ROOT.RooFormulaVar("bkg_st", "k*nst",  ROOT.RooArgList(k,nst))
         bkg_Vj = ROOT.RooFormulaVar("bkg_Vj", "k*nVj",  ROOT.RooArgList(k,nVj))
         bkg_tt = ROOT.RooFormulaVar("bkg\_tt", "k*ntt",  ROOT.RooArgList(k,ntt))
 
-	#expected mu*s+k*b
-	total_events = ROOT.RooFormulaVar("total_events", "mu*nZp_mass_point+ ndib+nst+nVj+ntt", ROOT.RooArgList(mu,nZp_mass_point, ndib,nst,nVj,ntt))
-	ExpEvents = ROOT.RooPoisson("pois","Total number of events",nev,total_events)
+	#expected mu*s+b(*k)
+	total_events = ROOT.RooFormulaVar("total_events", "mu*nZp_mass_point + k*(ndib+nst+nVj+ntt)", ROOT.RooArgList(mu,nZp_mass_point, k, ndib,nst,nVj,ntt))
+        #TotEvents_pdf
+	TotEvents_pdf = ROOT.RooPoisson("pois","Total number of events",N_obs,total_events)
 
+        #total pdf 
 	sum_pdf = ROOT.RooAddPdf("sumPDF","Total s+b PDF",ROOT.RooArgList(Zp_mass_point_pdf,dib_pdf,st_pdf,Vj_pdf,tt_pdf),ROOT.RooArgList(signal, bkg_dib, bkg_st, bkg_Vj, bkg_tt))
-	prod_sum_pdf = ROOT.RooProdPdf("extPDF","Total s+b PDF with nevents",ROOT.RooArgList(sum_pdf,ExpEvents))
+	prod_sum_pdf = ROOT.RooProdPdf("extPDF","Extended Maximum Likelihood",ROOT.RooArgList(sum_pdf, TotEvents_pdf))
 
 	#fit
 	prod_sum_pdf.fitTo(data_hist)# ROOT.RooFit.Extended(1))
