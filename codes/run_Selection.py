@@ -42,30 +42,32 @@ ROOT.gInterpreter.Declare(
             {
                 if((pt[i]>30000.) && ((ptcone30[i]/pt[i])<0.15) && ((etcone20[i]/pt[i])<0.15))
                 {
+                   
                     if((leptype[i]==11) && (TMath::Abs(eta[i])<2.47) && ((TMath::Abs(eta[i])<1.37) || (TMath::Abs(eta[i])>1.52)))
                     {
                         if((TMath::Abs(trackd0pvunbiased[i])/tracksigd0pvunbiased[i]<5) && (TMath::Abs(z0[i]*TMath::Sin(temp_lep.Theta()))<0.5))
                         {
                             index = i;
                             n_goodleps++;
-                            }
                         }
-
+                    }
+                   
+                    
                     if((leptype[i]==13) && (TMath::Abs(eta[i])<2.5))
                     {
                         if((TMath::Abs(trackd0pvunbiased[i])/tracksigd0pvunbiased[i]<3) && ((TMath::Abs(z0[i])*TMath::Sin(temp_lep.Theta()))<0.5))
                         {
                             index=i;
                             n_goodleps++;
-                            }
-                         }
-                     }
-                  }
+                        }
+                    }
+                }
             }
-
+        }
+        
         if(n_goodleps!=1) return -9; //save only index for events with exactly 1 good lepton
         return index;
-         }
+    }
     """
  )
 
@@ -189,6 +191,7 @@ ROOT.gInterpreter.Declare(
                     }
               
                 if((dR>1.5) && (dPhi>1.0) && (btag_is_within_TopLR || btag_is_smallRjet))
+                //if((dR>1.5) && (dPhi>1.0) && btag_is_within_TopLR && btag_is_smallRjet)  
                 {
                     NTopLRjets++;
                     TopLRjets_index=l;
@@ -203,7 +206,23 @@ ROOT.gInterpreter.Declare(
     """
 )
 
-
+ROOT.gInterpreter.Declare(
+    """
+    using Vec_t = const ROOT::VecOps::RVec<float>; 
+    float CalculatePtImbalance(int goodlep_index, Vec_t& lep_pt, Vec_t& lep_eta, Vec_t& lep_phi, Vec_t& lep_e, int goodjet_index, Vec_t& jet_pt, Vec_t& jet_eta, Vec_t& jet_phi, Vec_t& jet_E, int TopLRjets_index, Vec_t& LRjet_pt, Vec_t& LRjet_eta, Vec_t& LRjet_phi, Vec_t& LRjet_E, Vec_t& jet_MV2c10)                                                      
+    {                                                                                                                                                                            
+        ROOT::Math::PtEtaPhiEVector Lepton(lep_pt[goodlep_index], lep_eta[goodlep_index], lep_phi[goodlep_index], lep_e[goodlep_index]);                                                 ROOT::Math::PtEtaPhiEVector goodsmallRjet(jet_pt[goodjet_index], jet_eta[goodjet_index], jet_phi[goodjet_index], jet_E[goodjet_index]);                                          ROOT::Math::PtEtaPhiEVector TopHad(LRjet_pt[TopLRjets_index], LRjet_eta[TopLRjets_index], LRjet_phi[TopLRjets_index], LRjet_E[TopLRjets_index]);                                 ROOT::Math::PtEtaPhiEVector TopLep;      
+        float pt_imb = -99.;
+        
+        if(jet_MV2c10[goodjet_index]>0.8244273)                                                                                                                                  
+        {                                                                                                                                                                        
+            TopLep = goodsmallRjet + Lepton;    
+            pt_imb = (TopHad.Pt() - TopLep.Pt())/(TopHad.Pt() + TopLep.Pt());
+         }
+        return pt_imb;
+    }
+    """
+)
 ROOT.gInterpreter.Declare(
     """
     using Vec_t = const ROOT::VecOps::RVec<float>;
@@ -310,7 +329,22 @@ for s in samples:
 
     #take events with ONLY 1 good lepton passing quality and isolation criteria
     good_lep_df = pre_sel_df.Define('goodLep_index', 'GoodLep(lep_n, lep_pt, lep_eta, lep_phi, lep_E, lep_ptcone30, lep_etcone20, lep_trackd0pvunbiased, lep_tracksigd0pvunbiased, lep_z0, lep_type, lep_isTightID)').Filter("goodLep_index!=(-9)")
-    
+    '''
+    nbins = 100
+    a = 0
+    b = 600000
+    if s!='data':
+        h_met = pre_sel_df.Histo1D(ROOT.RDF.TH1DModel('MET_Et_' + s, 'MET_Et', nbins, a, b), "met_et", "weight")
+        h_met.Scale(Lumi, "width")
+    else:
+        h_met = pre_sel_df.Histo1D(ROOT.RDF.TH1DModel('MET_Et_' + s, 'MET_Et', nbins, a, b), "met_et")
+        h_met.Scale(1, "width")
+
+    h_met.GetXaxis().SetTitle("MET E_{T} [GeV]")
+    h_met.GetYaxis().SetTitle("Entries/6000 GeV")
+
+    h_met.Write()
+    '''
     #MET + mTW > 60 GeV
     met_df = good_lep_df.Define('MTW', 'Calculate_Wtransvmass(goodLep_index, lep_pt, lep_eta, lep_phi, lep_E, met_et, met_phi)').Filter("(met_et+MTW)>60000.")
     
@@ -333,13 +367,18 @@ for s in samples:
     #Construct the invariant mass with top-tagged large-R jet + small-R jet (b-tagged) + lepton
     final_df = goodTopjet_df.Define('TTbar_M', 'FinalInvMass(goodLep_index, lep_pt, lep_eta, lep_phi, lep_E, GoodJet_index, jet_pt, jet_eta, jet_phi, jet_E, TopLRjets_index, largeRjet_pt, largeRjet_eta, largeRjet_phi, largeRjet_E, jet_MV2c10)')
 
+    final_df = final_df.Define('TTbar_pt_imb', "CalculatePtImbalance(goodLep_index, lep_pt, lep_eta, lep_phi, lep_E, GoodJet_index, jet_pt, jet_eta, jet_phi, jet_E, TopLRjets_index, largeRjet_pt, largeRjet_eta, largeRjet_phi, largeRjet_E, jet_MV2c10)")
+
     #remove events where small-R jet is not b-tagged 
     final_df = final_df.Filter('TTbar_M>0')
 
-    nbins = 20
-    a = 400
-    b = 1600
-    
+    #nbins = 20
+    #a = 400
+    #b = 1600
+    nbins = 55
+    a = 0
+    b = 3300
+
     if s!='data':
         h_mass = final_df.Histo1D(ROOT.RDF.TH1DModel('ttbar_mass_' + s, 'ttbar_mass', nbins, a, b), "TTbar_M", "weight")
         h_mass.Scale(Lumi, "width")
@@ -352,9 +391,23 @@ for s in samples:
     
     print(h_mass.Integral("width"))
     
-    #h_mass.Draw()
     h_mass.Write()
-    
+
+    '''
+    nbins = 20
+    a = 0
+    b = 1
+    if s!='data':
+        h_pt_imb = final_df.Histo1D(ROOT.RDF.TH1DModel('ttbar_ptimbalance_' + s, 'ttbar_ptimbalance_', nbins, a, b), "TTbar_pt_imb", "weight")
+        h_pt_imb.Scale(Lumi, "width")
+    else:
+        h_pt_imb = final_df.Histo1D(ROOT.RDF.TH1DModel('ttbar_ptimbalance_' + s, 'ttbar_ptimbalance_', nbins, a, b), "TTbar_pt_imb")
+        h_pt_imb.Scale(1, "width")
+
+    h_pt_imb.GetXaxis().SetTitle("t\bar{t} imbalance")
+    h_pt_imb.GetYaxis().SetTitle("Entries/bin")
+    h_pt_imb.Write()
+    '''
 file_histos.Close()
 
 
