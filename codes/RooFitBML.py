@@ -7,7 +7,7 @@ def rooPart1(stringa):
 	f = ROOT.TFile.Open("../run/file_histos.root")
 
 	#x Axis variable
-	mass = ROOT.RooRealVar("mass","mass plot",400,1600,"GeV")
+	mass = ROOT.RooRealVar("mass","mass plot", 0, 3300,"GeV")
 
 	# Get histos
 	data = f.Get("ttbar_mass_data")
@@ -31,7 +31,6 @@ def rooPart1(stringa):
 	st_pdf = ROOT.RooHistPdf("st_pdf","st_pdf",ROOT.RooArgSet(mass),st_hist,0)
 	dib_pdf = ROOT.RooHistPdf("dib_pdf","dib_pdf",ROOT.RooArgSet(mass),dib_hist,0)
 	Zp_mass_point_pdf = ROOT.RooHistPdf("Zp_mass_point_pdf","Zp_mass_point_pdf",ROOT.RooArgSet(mass),Zp_mass_point_hist,0)
-
 
 
 	# tot numb events observed
@@ -61,38 +60,43 @@ def rooPart1(stringa):
 	nZp_mass_point.setConstant(ROOT.kTRUE)
 
 
-	# sig strenght
-	#mu = ROOT.RooRealVar("mu","mu",1,0,2)
-        mu = ROOT.RooRealVar("mu","mu", 0 , 100)
-
-        #total bkg normalization factor
-        k = ROOT.RooRealVar("k", "k", 0, 10.)
-        k.setVal(0.930433686828)
-        #k.setVal(1.)
-        k.setConstant(ROOT.kTRUE)
+        # sig strenght                                                                                                                                                                                   
+        mu = ROOT.RooRealVar("mu","mu", 0., 10.)
+      
+        #total bkg normalization factor                                                                                                                                                                   
+        k = ROOT.RooRealVar("k", "k", 0., 100.)
+        k.setVal(1.)
+        #k.setConstant(ROOT.kTRUE)
 
 	#signal yields *mu
-	signal = ROOT.RooFormulaVar("signal", "mu*nZp_mass_point", ROOT.RooArgList(mu,nZp_mass_point))
+	exp_signal_yields = ROOT.RooFormulaVar("exp_signal_yields", "mu*nZp_mass_point", ROOT.RooArgList(mu,nZp_mass_point))
 
         #bkgs yields
-        bkg_dib = ROOT.RooFormulaVar("bkg_dib", "k*ndib",  ROOT.RooArgList(k,ndib))
-        bkg_st = ROOT.RooFormulaVar("bkg_st", "k*nst",  ROOT.RooArgList(k,nst))
-        bkg_Vj = ROOT.RooFormulaVar("bkg_Vj", "k*nVj",  ROOT.RooArgList(k,nVj))
-        bkg_tt = ROOT.RooFormulaVar("bkg\_tt", "k*ntt",  ROOT.RooArgList(k,ntt))
+        exp_bkg_yields = ROOT.RooFormulaVar("exp_bkg_yields", "k*(ndib+nst+nVj+ntt)",  ROOT.RooArgList(k,ndib,nst,nVj,ntt))
+
+        #total bkg pdf
+        bkg_pdf =  ROOT.RooAddPdf("bkg_pdf", "totald bkg pdf", ROOT.RooArgList(dib_pdf,st_pdf,Vj_pdf,tt_pdf), ROOT.RooArgList(ndib, nst, nVj, ntt))
+
+
+        # Construct extended composite model
+        # -------------------------------------------------------------------
+        
+        # Sum the composite signal and background into an extended pdf
+        # exp_signal_yields+exp_bkg_yields
+        model = ROOT.RooAddPdf("model","Total s+b pdf", ROOT.RooArgList(Zp_mass_point_pdf, bkg_pdf), ROOT.RooArgList(exp_signal_yields, exp_bkg_yields))
+ 
+        model.fitTo(data_hist)
 
 	#expected mu*s+b(*k)
-	total_events = ROOT.RooFormulaVar("total_events", "mu*nZp_mass_point + k*(ndib+nst+nVj+ntt)", ROOT.RooArgList(mu,nZp_mass_point, k, ndib,nst,nVj,ntt))
+	#total_events = ROOT.RooFormulaVar("total_events", "mu*nZp_mass_point + k*(ndib+nst+nVj+ntt)", ROOT.RooArgList(mu,nZp_mass_point, k, ndib,nst,nVj,ntt))
         #TotEvents_pdf
-	TotEvents_pdf = ROOT.RooPoisson("pois","Total number of events",N_obs,total_events)
-
+	#TotEvents_pdf = ROOT.RooPoisson("pois","Total number of events",N_obs,total_events)
         #total pdf 
-	sum_pdf = ROOT.RooAddPdf("sumPDF","Total s+b PDF",ROOT.RooArgList(Zp_mass_point_pdf,dib_pdf,st_pdf,Vj_pdf,tt_pdf),ROOT.RooArgList(signal, bkg_dib, bkg_st, bkg_Vj, bkg_tt))
-	prod_sum_pdf = ROOT.RooProdPdf("extPDF","Extended Maximum Likelihood",ROOT.RooArgList(sum_pdf, TotEvents_pdf))
-
+	#sum_pdf = ROOT.RooAddPdf("sumPDF","Total s+b PDF",ROOT.RooArgList(Zp_mass_point_pdf,dib_pdf,st_pdf,Vj_pdf,tt_pdf),ROOT.RooArgList(signal, bkg_dib, bkg_st, bkg_Vj, bkg_tt))
+	#prod_sum_pdf = ROOT.RooProdPdf("extPDF","Extended Maximum Likelihood",ROOT.RooArgList(sum_pdf, TotEvents_pdf))
 	#fit
-	prod_sum_pdf.fitTo(data_hist)# ROOT.RooFit.Extended(1))
+	#prod_sum_pdf.fitTo(data_hist)# ROOT.RooFit.Extended(1))
 
-	
 	#c1=ROOT.TCanvas()
 
 	#frame = mass.frame(ROOT.RooFit.Title("mass distribution"))
@@ -115,7 +119,11 @@ def rooPart1(stringa):
 	
 	return mu.getValV()
 
-lista_m =["400","500","750","1000","1250","1500"]
+lista_m =[
+#"400","500","750","1000",                                                                                                                                                                               
+#"1250",
+"2500"                                                                                                                                                                                                  
+]
 lista_mu =[]
 for i in lista_m: lista_mu.append(rooPart1(i))
 print(lista_m, lista_mu)
