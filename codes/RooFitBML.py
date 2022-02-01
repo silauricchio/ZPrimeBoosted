@@ -34,29 +34,29 @@ def rooPart1(stringa):
 
 
 	# tot numb events observed
-	N_obs = ROOT.RooRealVar("n","n events",0,data.Integral("width")*2)
-	N_obs.setVal(data.Integral("width"))
+	N_obs = ROOT.RooRealVar("n","n events",0,data.Integral()*2)
+	N_obs.setVal(data.Integral())
 	N_obs.setConstant(ROOT.kTRUE)
 
 	# sig and bkcg evts oberved
-	ntt = ROOT.RooRealVar("ntt","tt events",0,tt.Integral("width")*2)
-	ntt.setVal(tt.Integral("width"))
+	ntt = ROOT.RooRealVar("ntt","tt events",0,tt.Integral()*2)
+	ntt.setVal(tt.Integral())
 	ntt.setConstant(ROOT.kTRUE)
 
-	nVj = ROOT.RooRealVar("nVj","Vj events",0,Vj.Integral("width")*2)
-	nVj.setVal(Vj.Integral("width"))
+	nVj = ROOT.RooRealVar("nVj","Vj events",0,Vj.Integral()*2)
+	nVj.setVal(Vj.Integral())
 	nVj.setConstant(ROOT.kTRUE)
 
-	nst = ROOT.RooRealVar("nst","st events",0,st.Integral("width")*2)
-	nst.setVal(st.Integral("width"))
+	nst = ROOT.RooRealVar("nst","st events",0,st.Integral()*2)
+	nst.setVal(st.Integral())
 	nst.setConstant(ROOT.kTRUE)
 
-	ndib = ROOT.RooRealVar("ndib","dib events",0,dib.Integral("width")*2)
-	ndib.setVal(dib.Integral("width"))
+	ndib = ROOT.RooRealVar("ndib","dib events",0,dib.Integral()*2)
+	ndib.setVal(dib.Integral())
 	ndib.setConstant(ROOT.kTRUE)
 
-	nZp_mass_point = ROOT.RooRealVar("nZp_mass_point","Zp_mass_point events",0,Zp_mass_point.Integral("width")*2)
-	nZp_mass_point.setVal(Zp_mass_point.Integral("width"))
+	nZp_mass_point = ROOT.RooRealVar("nZp_mass_point","Zp_mass_point events",0,Zp_mass_point.Integral()*2)
+	nZp_mass_point.setVal(Zp_mass_point.Integral())
 	nZp_mass_point.setConstant(ROOT.kTRUE)
 
 
@@ -64,7 +64,7 @@ def rooPart1(stringa):
         mu = ROOT.RooRealVar("mu","mu", 0., 10.)
       
         #total bkg normalization factor                                                                                                                                                                   
-        k = ROOT.RooRealVar("k", "k", 0., 100.)
+        k = ROOT.RooRealVar("k", "k", 0.0001, 10.)
         k.setVal(1.)
         #k.setConstant(ROOT.kTRUE)
 
