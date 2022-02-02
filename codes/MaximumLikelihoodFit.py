@@ -91,7 +91,7 @@ for mass in Zprime_masses:
         Zprime_pdf = Zprimes_pdf[i]
         exp_signal_yields = exp_signals_yields[i]
 
-        model = ROOT.RooAddPdf("model " + mass, "Total s(" + mass + ") +b pdf", ROOT.RooArgList(Zprime_pdf, bkg_pdf), ROOT.RooArgList(exp_signal_yields, exp_bkg_yields))
+        model = ROOT.RooAddPdf("model_" + mass, "Total s(" + mass + ") +b pdf", ROOT.RooArgList(Zprime_pdf, bkg_pdf), ROOT.RooArgList(exp_signal_yields, exp_bkg_yields))
 
         # construct (binned) negative log likelihood
         nll = model.createNLL(data_hist, ROOT.RooFit.NumCPU(2))
@@ -100,7 +100,7 @@ for mass in Zprime_masses:
         ROOT.RooMinimizer(nll).migrad()
 
         # Plot likelihood scan for mu 
-        frame1 = mu.frame(ROOT.RooFit.Bins(10),ROOT.RooFit.Range(0,1), ROOT.RooFit.Title("negative LL and profileLL in mu for Z' " + mass + "GeV")) 
+        frame1 = mu.frame(ROOT.RooFit.Bins(10),ROOT.RooFit.Range(0, 1.5), ROOT.RooFit.Title("negative LL and profileLL in mu for Z' " + mass + "GeV")) 
         nll.plotOn(frame1,ROOT.RooFit.ShiftToZero(),ROOT.RooFit.Name("NLL_mu"))
 
         # Plot likelihood scan for k                                                                                                                                                                 
@@ -168,10 +168,11 @@ for mass in Zprime_masses:
         #--------------------------------------------------------------------------
         # -------- create the workspace and save pdfs and composite models --------
         #--------------------------------------------------------------------------
+
         w = ROOT.RooWorkspace("w_" + mass)
+        getattr(w,'import')(model)
         getattr(w,'import')(bkg_pdf)
         getattr(w,'import')(Zprime_pdf)
-        getattr(w,'import')(model)
         getattr(w,'import')(data_hist)
         
         #-------------------------------------------------------
@@ -186,3 +187,5 @@ for mass in Zprime_masses:
 
         getattr(w,'import')(mc)
         w.writeToFile("Model_" + mass + ".root", True)
+
+        del w

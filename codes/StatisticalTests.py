@@ -20,7 +20,7 @@ for mass in Zprime_masses:
 
     data = w.data("data_hist") 
     mc = w.obj("ModelConfig_" + mass)
-    model = w.pdf("model " + mass)
+    model = w.pdf("model_" + mass)
 
     # make sure ingredients are found
     if not data or not mc or not model:   
