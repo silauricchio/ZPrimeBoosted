@@ -186,6 +186,6 @@ for mass in Zprime_masses:
         mc.SetNuisanceParameters(ROOT.RooArgSet(w.var("k"))) #? k nuis par?
 
         getattr(w,'import')(mc)
-        w.writeToFile("Model_" + mass + ".root", True)
+        w.writeToFile("../run/Model_" + mass + ".root", True)
 
         del w
