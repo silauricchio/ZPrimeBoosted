@@ -60,7 +60,7 @@ for mass in Zprime_masses:
         i = i+1
 
 # sig strenght
-mu = ROOT.RooRealVar("mu","mu", 0 , 2)
+mu = ROOT.RooRealVar("mu","mu", 0 , 10)
 
 #total bkg normalization factor
 k = ROOT.RooRealVar("k", "k", 0.0001, 10)
@@ -100,12 +100,12 @@ for mass in Zprime_masses:
         ROOT.RooMinimizer(nll).migrad()
 
         # Plot likelihood scan for mu 
-        frame1 = mu.frame(ROOT.RooFit.Bins(10),ROOT.RooFit.Range(0, 1.5), ROOT.RooFit.Title("negative LL and profileLL in mu for Z' " + mass + "GeV")) 
-        nll.plotOn(frame1,ROOT.RooFit.ShiftToZero(),ROOT.RooFit.Name("NLL_mu"))
+        frame1 = mu.frame(ROOT.RooFit.Bins(10),ROOT.RooFit.Range(0, 1.5), ROOT.RooFit.Title("negative LL profiled on mu for Z' " + mass + "GeV")) 
+        nll.plotOn(frame1, ROOT.RooFit.ShiftToZero(), ROOT.RooFit.Name("NLL_mu"))
 
         # Plot likelihood scan for k                                                                                                                                                                 
-        frame2 = k.frame(ROOT.RooFit.Bins(10), ROOT.RooFit.Range(0.0001, 3), ROOT.RooFit.Title("negative LL and profileLL in k for Z' " + mass + "GeV"))
-        nll.plotOn(frame2,ROOT.RooFit.ShiftToZero(), ROOT.RooFit.Name("NLL_k"))
+        frame2 = k.frame(ROOT.RooFit.Bins(10), ROOT.RooFit.Range(0.0001, 3), ROOT.RooFit.Title("negative LL profiled on k for Z' " + mass + "GeV"))
+        nll.plotOn(frame2, ROOT.RooFit.ShiftToZero(), ROOT.RooFit.Name("NLL_k"))
         
 
 
@@ -116,7 +116,7 @@ for mass in Zprime_masses:
         pll_mu = nll.createProfile(ROOT.RooArgSet(mu))
         
         #Plot the profile likelihood in mu
-        pll_mu.plotOn(frame1, ROOT.RooFit.Name("NprofileLL_mu"), ROOT.RooFit.LineColor(ROOT.kRed)) 
+        #pll_mu.plotOn(frame1, ROOT.RooFit.Name("NprofileLL_mu"), ROOT.RooFit.LineColor(ROOT.kRed)) 
         
         # Adjust frame maximum for visual clarity
         #frame1.SetMinimum(0) 
@@ -129,7 +129,7 @@ for mass in Zprime_masses:
         # all floating parameters except k for each evaluation                                                                                                                                           
         pll_k = nll.createProfile(ROOT.RooArgSet(k))
         #Plot the profile likelihood in k                                                                                                                                                               
-        pll_k.plotOn(frame2, ROOT.RooFit.Name("NprofileLL_k"), ROOT.RooFit.LineColor(ROOT.kRed)) 
+        #pll_k.plotOn(frame2, ROOT.RooFit.Name("NprofileLL_k"), ROOT.RooFit.LineColor(ROOT.kRed)) 
         # Adjust frame maximum for visual clarity                                                                                                                                                          
         #frame1.SetMinimum(0)                                                                                                                                                                            
         #frame1.SetMaximum(3)  
@@ -145,6 +145,7 @@ for mass in Zprime_masses:
         #leg1.AddEntry("NprofileLL_mu", "NPLL", "L")
         ROOT.gPad.SetLeftMargin(0.15) 
         frame1.GetYaxis().SetTitleOffset(1.4)
+        frame1.GetYaxis().SetTitle("-2 \ln{L}")
         frame1.Draw() 
         #leg1.Draw()
         
@@ -155,6 +156,7 @@ for mass in Zprime_masses:
         #leg2.AddEntry("NprofileLL_k", "NPLL", "L")
         ROOT.gPad.SetLeftMargin(0.15)
         frame2.GetYaxis().SetTitleOffset(1.4)
+        frame2.GetYaxis().SetTitle("-2 \ln{L}")
         frame2.Draw() 
         #leg2.Draw()
         
