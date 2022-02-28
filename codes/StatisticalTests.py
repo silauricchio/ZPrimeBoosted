@@ -4,11 +4,8 @@ import sys
 
 poiValueForBackground = 0
 
-Zprime_masses = ["400", "500", "750", "1000", "1250", "1500", "1750", "2000", "2250", "2500", "2750", "3000"]
-#Zprime_masses = [
-#"1000"
-#, "1250", "1500"
-#]
+#Zprime_masses = ["400", "500", "750", "1000", "1250", "1500", "1750", "2000", "2250", "2500", "2750", "3000"]
+Zprime_masses = ["500", "750", "1000", "1250", "1500", "1750", "2000", "2250", "2500", "2750", "3000"]
 
 
 for mass in Zprime_masses:
@@ -83,7 +80,7 @@ for mass in Zprime_masses:
     # ----- repeat the test with Toys MC ----
     # ---------------------------------------
 
-    NTOYS = 1000
+    NTOYS = 5000
 
     # Get RooStats ModelConfig from workspace and save it as Signal+Background model
     sbModel = mc.Clone()
@@ -94,8 +91,9 @@ for mass in Zprime_masses:
     # Clone S+B model, set POI to zero and set as B-Only model
     bModel = sbModel.Clone()
     bModel.SetName('bmodel')
-    poi.setVal(0.)
-    bModel.SetSnapshot(ROOT.RooArgSet(poi))
+    poi_null = poi.Clone()
+    poi_null.setVal(0.)
+    bModel.SetSnapshot(ROOT.RooArgSet(poi_null))
     
     hc = ROOT.RooStats.FrequentistCalculator(data, bModel, sbModel)
     hc.SetToys(int(NTOYS), int(NTOYS/2.))
@@ -123,7 +121,7 @@ for mass in Zprime_masses:
     print("Observed significance with Toys MC")
     print("For Z'" + mass + " p value --> " + str(toymcs_p_value) + " and Z --> " + str(toymcs_significance))
 
-        
+
     # HypoTestInverter #per l'estrazione dei limiti
     calc = ROOT.RooStats.HypoTestInverter(hc)
     calc.SetConfidenceLevel(0.95)
@@ -143,7 +141,7 @@ for mass in Zprime_masses:
 
     # Print information
     hc.GetFitInfo().Print('v')
-
+    
 
     del hc
 

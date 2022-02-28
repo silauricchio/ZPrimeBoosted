@@ -60,7 +60,7 @@ for mass in Zprime_masses:
         i = i+1
 
 # sig strenght
-mu = ROOT.RooRealVar("mu","mu", 0 , 10)
+mu = ROOT.RooRealVar("mu","mu", 0 , 1000)
 
 #total bkg normalization factor
 k = ROOT.RooRealVar("k", "k", 0.0001, 10)
