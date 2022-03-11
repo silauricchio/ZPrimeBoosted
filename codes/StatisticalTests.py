@@ -12,10 +12,10 @@ NTOYS = 7000
 poiValueForBackground = 0
 
 Zprime_masses = ["400", "500", "750", "1000", "1250", "1500", "1750", "2000", "2250", "2500", "2750", "3000"] #GeV
-#Zprime_masses = ["3000"]
+#Zprime_masses = ["2000"]
 
-Zprime_xsections = [8.9856996, 8.7384996, 3.1201000, 1.1260999, 0.4598099, 0.2068500, 0.1001600, 0.0513460, 0.0274810, 0.015226, 0.015226, 0.0050842] #fb
-#Zprime_xsections = [8.9856996]
+Zprime_xsections = [8.9856996, 8.7384996, 3.1201000, 1.1260999, 0.4598099, 0.2068500, 0.1001600, 0.0513460, 0.0274810, 0.015226, 0.0086883, 0.0050842] #fb
+#Zprime_xsections = [0.0513460]
 
 Asym_pvalue = {}
 Asym_sig = {}
@@ -112,21 +112,24 @@ for mass in Zprime_masses:
         print('ASYMPTOTIC CALCULATION')
         print('')
         
-        AsymCalc = ROOT.RooStats.AsymptoticCalculator(data, bModel, sbModel, False) #False if for Asimov data with fitted k
+        AsymCalc = ROOT.RooStats.AsymptoticCalculator(data, sbModel, bModel, False) #False if for Asimov data with fitted k
         AsymCalc.SetOneSidedDiscovery(True) 
 
         #Return the hypothesis test result obtained from the likelihood ratio of the maximum likelihood value with mu=0 (null hypothesis), with respect keeping all parameters floating
         testresult = AsymCalc.GetHypoTest()
         significance = testresult.Significance()    
         p_value = testresult.NullPValue() 
+        
         '''
         can = ROOT.TCanvas()
         plot = ROOT.RooStats.HypoTestPlot(testresult)
         plot.Draw()
         can.SaveAs('../run/TestStat_Distr_Asym_' + mass +'.pdf')
         '''
-        print("Observed significance with asym formulae")
+        print("Observed null significance with asym formulae")
         print("For Z' " + mass + " p value --> " + str(p_value) + " and Z --> " + str(significance))
+        print("Observed null significance (in s+b assumption) with asym formulae")
+        print("For Z' " + mass + " p value --> " + str(testresult.AlternatePValue()) + " and Z --> " + str(ROOT.RooStats.PValueToSignificance(testresult.AlternatePValue())))
   
         Exp_pvalue = AsymCalc.GetExpectedPValues(p_value, testresult.AlternatePValue(), 0,False)
         Exp_pvalue_1s = AsymCalc.GetExpectedPValues(p_value, testresult.AlternatePValue(), 1, False)
@@ -165,14 +168,14 @@ for mass in Zprime_masses:
         # HypoTestInverter for limits extraction                                                                                                                                                           
         AsymCalc = ROOT.RooStats.AsymptoticCalculator(data, bModel, sbModel, False)
         AsymCalc.SetOneSided(True)
-  
+    
         calc = ROOT.RooStats.HypoTestInverter(AsymCalc)                                                                                                                                                    
         calc.SetConfidenceLevel(0.95)                                                                                                                                                                      
         calc.UseCLs(True)                                                                                                                                                                                  
         calc.SetVerbose(True)                                                                                                                                                                             
         calc.SetAutoScan()                                                                                                                                                                                 
         hypotestresult = calc.GetInterval()   
-
+        
         ObsUpperLimit = hypotestresult.UpperLimit()
         ExpUpperLimit = hypotestresult.GetExpectedUpperLimit(0)
         ExpUpperLimit_1s = hypotestresult.GetExpectedUpperLimit(1)
@@ -207,20 +210,17 @@ for mass in Zprime_masses:
         print('')
         
         
-        
-        hc = ROOT.RooStats.FrequentistCalculator(data, bModel, sbModel) 
+        hc = ROOT.RooStats.FrequentistCalculator(data, sbModel, bModel) 
         hc.SetToys(int(NTOYS), int(NTOYS))
         hc.StoreFitInfo(True)
         hc.UseSameAltToys()
         
         # Test statistics: profile likelihood
         profll = ROOT.RooStats.ProfileLikelihoodTestStat(bModel.GetPdf())
-        profll.EnableDetailedOutput()
-        profll.SetLOffset(True)
         profll.SetMinimizer('Minuit2')
+        
         profll.SetOneSidedDiscovery(True)
-        profll.SetPrintLevel(0)
-        profll.SetStrategy(2)
+        profll.SetOneSided(False)
         profll.SetAlwaysReuseNLL(True)
         profll.SetReuseNLL(True)
         
@@ -261,8 +261,22 @@ for mass in Zprime_masses:
             
         print("Observed significance with Toys MC")
         print("For Z'" + mass + " p value --> " + str(toymcs_p_value) + " and Z --> " + str(toymcs_significance))
-        
+
+        del profll
+        del hc
+
+        hc = ROOT.RooStats.FrequentistCalculator(data, bModel, sbModel)
+        hc.SetToys(int(NTOYS), int(NTOYS))
+        hc.StoreFitInfo(True)
+        hc.UseSameAltToys()
+
         # HypoTestInverter for limits extraction
+        profll = ROOT.RooStats.ProfileLikelihoodTestStat(sbModel.GetPdf())
+        profll.SetMinimizer('Minuit2')
+        profll.SetOneSidedDiscovery(False)
+        profll.SetAlwaysReuseNLL(True)
+        profll.SetReuseNLL(True)
+
         profll.SetOneSided(True)
         toymcs.SetTestStatistic(profll)
         toymc_calc = ROOT.RooStats.HypoTestInverter(hc)
@@ -292,8 +306,9 @@ for mass in Zprime_masses:
         ExpToysLimits_m1s[int(mass)] = toymc_ExpUpperLimit_m1s
         ExpToysLimits_m2s[int(mass)] = toymc_ExpUpperLimit_m2s
         
+        del profll
         del hc
-
+     
 
 #order dictionary by masses
 Asym_pvalue = collections.OrderedDict(sorted(Asym_pvalue.items()))
@@ -404,9 +419,9 @@ if run_Asimov:
     plt.plot(masses, sigs_asym_exp, linestyle='dashed', linewidth=0.5, label='Exp')
     plt.plot(masses, sigs_asym, marker='o', linestyle='dashed', markerfacecolor='black', label='Obs')
     plt.title('Asymptotic approximation')
-    plt.ylabel('One-side Gaussian significance')
+    plt.ylabel('Gaussian significance')
     #plt.yscale('log')
-    plt.ylim(bottom= -0.5)
+    #plt.ylim(bottom= -0.5)
     plt.legend(loc="upper right")
     plt.savefig("../run/significances_Asym.pdf")
     plt.clf()
@@ -496,7 +511,7 @@ if run_Toys:
     #plt.yscale('log')
     #plt.ylim(bottom=0.0001)
     plt.legend(loc="upper right")
-    plt.savefig("../run/significancess_Toys.pdf")
+    plt.savefig("../run/significances_Toys.pdf")
     plt.clf()
 
     plt.fill_between(masses, xsec_exp_lim_2s_toys, xsec_exp_lim_m2s_toys, linewidth=0, color='yellow', label='$Exp \pm 2\sigma$')           

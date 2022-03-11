@@ -1,0 +1,1305 @@
+
+[1mRooFit v3.60 -- Developed by Wouter Verkerke and David Kirkby[0m 
+                Copyright (C) 2000-2013 NIKHEF, University of California & Stanford University
+                All rights reserved, please read http://roofit.sourceforge.net/license.txt
+
+
+RooWorkspace(w_400) w_400 contents
+
+variables
+---------
+(k,mu,nZp_400,nbkg,var_mass)
+
+p.d.f.s
+-------
+RooHistPdf::Zprime_400_pdf[ pdfObs=(var_mass) ] = 0
+RooHistPdf::bkg_pdf[ pdfObs=(var_mass) ] = 0.0109141
+RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.0109141
+
+functions
+--------
+RooFormulaVar::exp_bkg_yields[ actualVars=(k,nbkg) formula="x[0]*x[1]" ] = 201.603
+RooFormulaVar::exp_signal_yields_400[ actualVars=(mu,nZp_400) formula="x[0]*x[1]" ] = 0.000140772
+
+datasets
+--------
+RooDataHist::data_hist(var_mass)
+
+embedded datasets (in pdfs and functions)
+-----------------------------------------
+RooDataHist::Zprime_400(var_mass)
+RooDataHist::bkg_hist(var_mass)
+
+named sets
+----------
+ModelConfig_400_NuisParams:(k)
+ModelConfig_400_Observables:(var_mass)
+ModelConfig_400_POI:(mu)
+
+generic objects
+---------------
+RooStats::ModelConfig::ModelConfig_400
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TOYS CALCULATION
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.0108921
+Snapshot:                
+  1) 0x8771590 RooRealVar:: mu = 0 +/- 83.9133  L(0 - 1000)  "mu"
+
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.0108921
+Snapshot:                
+  1) 0x879f910 RooRealVar:: mu = 1 +/- 83.9133  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: -0.000258654
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#0] PROGRESS:Generation -- generated toys: 500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 5000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 5500 / 7000
+    ----> Doing a re-scan first
+[#0] PROGRESS:Generation -- generated toys: 6000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 6500 / 7000
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+    ----> Doing a re-scan first
+[#0] PROGRESS:Generation -- generated toys: 500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 5000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 5500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 6000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 6500 / 7000
+Observed significance with Toys MC
+For Z'400 p value --> 0.912285714286 and Z --> -1.35496543008
+[#1] INFO:InputArguments -- HypoTestInverter ---- Input models: 
+		 using as S+B (null) model     : sbmodel
+		 using as B (alternate) model  : bmodel
+
+[#1] INFO:Eval -- HypoTestInverter::GetInterval - run an automatic scan
+[#1] INFO:ObjectHandling -- RooWorkspace::saveSnaphot(w_400) replacing previous snapshot with name sbmodel__snapshot
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.0036136
+Snapshot:                
+  1) 0x8b3a410 RooRealVar:: mu = 1000 +/- 83.9133  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.0036136
+Snapshot:                
+  1) 0x856c870 RooRealVar:: mu = 0 +/- 83.9133  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 152.665
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#0] PROGRESS:Generation -- generated toys: 500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 5000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 5500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 6000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 6500 / 7000
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 5000 / 7000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 5500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 6000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 6500 / 7000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#1] INFO:ObjectHandling -- RooWorkspace::saveSnaphot(w_400) replacing previous snapshot with name sbmodel__snapshot
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00542951
+Snapshot:                
+  1) 0x8bfa3a0 RooRealVar:: mu = 500 +/- 500  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00542951
+Snapshot:                
+  1) 0xd4f3b20 RooRealVar:: mu = 0 +/- 83.9133  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 46.0563
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#0] PROGRESS:Generation -- generated toys: 500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 5000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 5500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 6000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 6500 / 7000
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+[#0] PROGRESS:Generation -- generated toys: 500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2500 / 7000
+    ----> Doing a re-scan first
+[#0] PROGRESS:Generation -- generated toys: 3000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4000 / 7000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 4500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 5000 / 7000
+    ----> Doing a re-scan first
+[#0] PROGRESS:Generation -- generated toys: 5500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 6000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 6500 / 7000
+[#1] INFO:ObjectHandling -- RooWorkspace::saveSnaphot(w_400) replacing previous snapshot with name sbmodel__snapshot
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00725154
+Snapshot:                
+  1) 0xd5a3970 RooRealVar:: mu = 250 +/- 250  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00725154
+Snapshot:                
+  1) 0x120c8f00 RooRealVar:: mu = 0 +/- 83.9133  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 13.3595
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+[#0] PROGRESS:Generation -- generated toys: 500 / 2000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 1000 / 2000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 2000
+[#1] INFO:ObjectHandling -- RooWorkspace::saveSnaphot(w_400) replacing previous snapshot with name sbmodel__snapshot
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00871359
+Snapshot:                
+  1) 0xd5f5130 RooRealVar:: mu = 125 +/- 125  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00871359
+Snapshot:                
+  1) 0x120d1ba0 RooRealVar:: mu = 0 +/- 83.9133  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 3.91542
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 500 / 2000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 1000 / 2000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 2000
+[#1] INFO:ObjectHandling -- RooWorkspace::saveSnaphot(w_400) replacing previous snapshot with name sbmodel__snapshot
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00955513
+Snapshot:                
+  1) 0xd6619d0 RooRealVar:: mu = 70.3971 +/- 62.5  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00955513
+Snapshot:                
+  1) 0x120c4420 RooRealVar:: mu = 0 +/- 83.9133  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 1.46549
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 500 / 2000
+    ----> Doing a re-scan first
+[#0] PROGRESS:Generation -- generated toys: 1000 / 2000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 2000
+[#1] INFO:ObjectHandling -- RooWorkspace::saveSnaphot(w_400) replacing previous snapshot with name sbmodel__snapshot
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0xd644760 RooRealVar:: mu = 86.0729 +/- 5.32977  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0x16b5d1b0 RooRealVar:: mu = 0 +/- 83.9133  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 2.05716
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 500 / 2000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 1000 / 2000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 2000
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0xd644760 RooRealVar:: mu = 86.0729 +/- 5.32977  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0x16b5d1b0 RooRealVar:: mu = 0 +/- 83.9133  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 2.05716
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+    ----> Doing a re-scan first
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 500 / 2000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 1000 / 2000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 2000
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0x16b9b8e0 RooRealVar:: mu = 86.0729 +/- 5.32977  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0x1864a1f0 RooRealVar:: mu = 0 +/- 83.9133  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 2.05716
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 500 / 2000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 1000 / 2000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 2000
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0x145f6a70 RooRealVar:: mu = 86.0729 +/- 5.32977  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0x1866f640 RooRealVar:: mu = 0 +/- 83.9133  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 2.05716
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 500 / 2000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 1000 / 2000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 2000
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0x1864a1f0 RooRealVar:: mu = 86.0729 +/- 5.32977  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0x193df1f0 RooRealVar:: mu = 0 +/- 83.9133  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 2.05716
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 500 / 2000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 1000 / 2000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 2000
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0x18669190 RooRealVar:: mu = 86.0729 +/- 5.32977  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0x193e1410 RooRealVar:: mu = 0 +/- 83.9133  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 2.05716
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 500 / 2000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 1000 / 2000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 2000
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0x18669190 RooRealVar:: mu = 86.0729 +/- 5.32977  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0x1867c130 RooRealVar:: mu = 0 +/- 83.9133  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 2.05716
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 500 / 2000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 1000 / 2000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 2000
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0x193eca80 RooRealVar:: mu = 86.0729 +/- 5.32977  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0x1943fc90 RooRealVar:: mu = 0 +/- 83.9133  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 2.05716
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 500 / 2000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 1000 / 2000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 2000
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0x1943fc90 RooRealVar:: mu = 86.0729 +/- 5.32977  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0x1adf9670 RooRealVar:: mu = 0 +/- 83.9133  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 2.05716
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 500 / 2000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 1000 / 2000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 2000
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0x1ca30ff0 RooRealVar:: mu = 86.0729 +/- 5.32977  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0x1ca79a00 RooRealVar:: mu = 0 +/- 83.9133  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 2.05716
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 500 / 2000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 1000 / 2000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 2000
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0x1ca2ed50 RooRealVar:: mu = 86.0729 +/- 5.32977  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0x1ca7ef10 RooRealVar:: mu = 0 +/- 83.9133  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 2.05716
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 500 / 2000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 1000 / 2000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 2000
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0x1ca4c580 RooRealVar:: mu = 86.0729 +/- 5.32977  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_400[ exp_signal_yields_400 * Zprime_400_pdf + exp_bkg_yields * bkg_pdf ] = 0.00929735
+Snapshot:                
+  1) 0x1f2a19a0 RooRealVar:: mu = 0 +/- 83.9133  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 2.05716
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 500 / 2000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 1000 / 2000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 2000
+[#1] INFO:Eval -- HypoTestInverter::RunLimit - Result:    
+	Limit: mu < 90.0984 +/- 1.87528 @ 95% CL
+400
+MU up obs = 90.0983847026
+MU up exp = 105.178633917
+
+
+RooWorkspace(w_500) w_500 contents
+
+variables
+---------
+(k,mu,nZp_500,nbkg,var_mass)
+
+p.d.f.s
+-------
+RooHistPdf::Zprime_500_pdf[ pdfObs=(var_mass) ] = 0.000106997
+RooHistPdf::bkg_pdf[ pdfObs=(var_mass) ] = 0.0109141
+RooAddPdf::model_500[ exp_signal_yields_500 * Zprime_500_pdf + exp_bkg_yields * bkg_pdf ] = 0.0109141
+
+functions
+--------
+RooFormulaVar::exp_bkg_yields[ actualVars=(k,nbkg) formula="x[0]*x[1]" ] = 201.566
+RooFormulaVar::exp_signal_yields_500[ actualVars=(mu,nZp_500) formula="x[0]*x[1]" ] = 2.6137e-08
+
+datasets
+--------
+RooDataHist::data_hist(var_mass)
+
+embedded datasets (in pdfs and functions)
+-----------------------------------------
+RooDataHist::Zprime_500(var_mass)
+RooDataHist::bkg_hist(var_mass)
+
+named sets
+----------
+ModelConfig_500_NuisParams:(k)
+ModelConfig_500_Observables:(var_mass)
+ModelConfig_500_POI:(mu)
+
+generic objects
+---------------
+RooStats::ModelConfig::ModelConfig_500
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TOYS CALCULATION
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_500[ exp_signal_yields_500 * Zprime_500_pdf + exp_bkg_yields * bkg_pdf ] = 0.0108826
+Snapshot:                
+  1) 0xfbb5150 RooRealVar:: mu = 0 +/- 151.437  L(0 - 1000)  "mu"
+
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_500[ exp_signal_yields_500 * Zprime_500_pdf + exp_bkg_yields * bkg_pdf ] = 0.0108826
+Snapshot:                
+  1) 0xfbb5150 RooRealVar:: mu = 1 +/- 151.437  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: -0.000541821
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#0] PROGRESS:Generation -- generated toys: 500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3000 / 7000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+[#0] PROGRESS:Generation -- generated toys: 3500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4000 / 7000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 4500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 5000 / 7000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 5500 / 7000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 6000 / 7000
+    ----> Doing a re-scan first
+[#0] PROGRESS:Generation -- generated toys: 6500 / 7000
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 500 / 7000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 1000 / 7000
+    ----> Doing a re-scan first
+[#0] PROGRESS:Generation -- generated toys: 1500 / 7000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 2000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2500 / 7000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 3000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3500 / 7000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 4000 / 7000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 4500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 5000 / 7000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 5500 / 7000
+    ----> Doing a re-scan first
+[#0] PROGRESS:Generation -- generated toys: 6000 / 7000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+[#0] PROGRESS:Generation -- generated toys: 6500 / 7000
+Observed significance with Toys MC
+For Z'500 p value --> 0.959285714286 and Z --> -1.74245664527
+[#1] INFO:InputArguments -- HypoTestInverter ---- Input models: 
+		 using as S+B (null) model     : sbmodel
+		 using as B (alternate) model  : bmodel
+
+[#1] INFO:Eval -- HypoTestInverter::GetInterval - run an automatic scan
+[#1] INFO:ObjectHandling -- RooWorkspace::saveSnaphot(w_500) replacing previous snapshot with name sbmodel__snapshot
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_500[ exp_signal_yields_500 * Zprime_500_pdf + exp_bkg_yields * bkg_pdf ] = 0.00286344
+Snapshot:                
+  1) 0x16c0cef0 RooRealVar:: mu = 1000 +/- 151.437  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_500[ exp_signal_yields_500 * Zprime_500_pdf + exp_bkg_yields * bkg_pdf ] = 0.00286344
+Snapshot:                
+  1) 0x16c0cef0 RooRealVar:: mu = 0 +/- 151.437  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 229.662
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#0] PROGRESS:Generation -- generated toys: 500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 5000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 5500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 6000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 6500 / 7000
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+[#0] PROGRESS:Generation -- generated toys: 500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4500 / 7000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 5000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 5500 / 7000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 6000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 6500 / 7000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#1] INFO:ObjectHandling -- RooWorkspace::saveSnaphot(w_500) replacing previous snapshot with name sbmodel__snapshot
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_500[ exp_signal_yields_500 * Zprime_500_pdf + exp_bkg_yields * bkg_pdf ] = 0.00449952
+Snapshot:                
+  1) 0xd65f200 RooRealVar:: mu = 500 +/- 500  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_500[ exp_signal_yields_500 * Zprime_500_pdf + exp_bkg_yields * bkg_pdf ] = 0.00449952
+Snapshot:                
+  1) 0xfab6e70 RooRealVar:: mu = 0 +/- 151.437  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 57.541
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#0] PROGRESS:Generation -- generated toys: 500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 5000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 5500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 6000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 6500 / 7000
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+[#0] PROGRESS:Generation -- generated toys: 500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1000 / 7000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+[#0] PROGRESS:Generation -- generated toys: 1500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4500 / 7000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+[#0] PROGRESS:Generation -- generated toys: 5000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 5500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 6000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 6500 / 7000
+[#1] INFO:ObjectHandling -- RooWorkspace::saveSnaphot(w_500) replacing previous snapshot with name sbmodel__snapshot
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_500[ exp_signal_yields_500 * Zprime_500_pdf + exp_bkg_yields * bkg_pdf ] = 0.00635326
+Snapshot:                
+  1) 0xd603080 RooRealVar:: mu = 250 +/- 250  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_500[ exp_signal_yields_500 * Zprime_500_pdf + exp_bkg_yields * bkg_pdf ] = 0.00635326
+Snapshot:                
+  1) 0x120f01f0 RooRealVar:: mu = 0 +/- 151.437  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 12.5264
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 500 / 2000
+[#0] PROGRESS:Generation -- generated toys: 1000 / 2000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 2000
+[#1] INFO:ObjectHandling -- RooWorkspace::saveSnaphot(w_500) replacing previous snapshot with name sbmodel__snapshot
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_500[ exp_signal_yields_500 * Zprime_500_pdf + exp_bkg_yields * bkg_pdf ] = 0.00802379
+Snapshot:                
+  1) 0xfc87520 RooRealVar:: mu = 125 +/- 125  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_500[ exp_signal_yields_500 * Zprime_500_pdf + exp_bkg_yields * bkg_pdf ] = 0.00802379
+Snapshot:                
+  1) 0x16b98cb0 RooRealVar:: mu = 0 +/- 151.437  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 3.11833
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+[#0] PROGRESS:Generation -- generated toys: 500 / 2000
+[#0] PROGRESS:Generation -- generated toys: 1000 / 2000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 2000
+[#1] INFO:ObjectHandling -- RooWorkspace::saveSnaphot(w_500) replacing previous snapshot with name sbmodel__snapshot
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_500[ exp_signal_yields_500 * Zprime_500_pdf + exp_bkg_yields * bkg_pdf ] = 0.00862513
+Snapshot:                
+  1) 0x120f01f0 RooRealVar:: mu = 92.0044 +/- 62.5  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_500[ exp_signal_yields_500 * Zprime_500_pdf + exp_bkg_yields * bkg_pdf ] = 0.00862513
+Snapshot:                
+  1) 0x16b75a30 RooRealVar:: mu = 0 +/- 151.437  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 1.74709
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 500 / 2000
+    ----> Doing a re-scan first
+[#0] PROGRESS:Generation -- generated toys: 1000 / 2000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 1500 / 2000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_500[ exp_signal_yields_500 * Zprime_500_pdf + exp_bkg_yields * bkg_pdf ] = 0.00862513
+Snapshot:                
+  1) 0x1caab7b0 RooRealVar:: mu = 92.0044 +/- 62.5  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_500[ exp_signal_yields_500 * Zprime_500_pdf + exp_bkg_yields * bkg_pdf ] = 0.00862513
+Snapshot:                
+  1) 0x1cb3ca80 RooRealVar:: mu = 0 +/- 151.437  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 1.74709
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 500 / 2000
+    ----> Doing a re-scan first
+[#0] PROGRESS:Generation -- generated toys: 1000 / 2000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 1500 / 2000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_500[ exp_signal_yields_500 * Zprime_500_pdf + exp_bkg_yields * bkg_pdf ] = 0.00862513
+Snapshot:                
+  1) 0x1cb32260 RooRealVar:: mu = 92.0044 +/- 62.5  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_500[ exp_signal_yields_500 * Zprime_500_pdf + exp_bkg_yields * bkg_pdf ] = 0.00862513
+Snapshot:                
+  1) 0x3242d180 RooRealVar:: mu = 0 +/- 151.437  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 1.74709
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 500 / 2000
+    ----> Doing a re-scan first
+[#0] PROGRESS:Generation -- generated toys: 1000 / 2000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+    ----> trying with improve
+[#0] PROGRESS:Generation -- generated toys: 1500 / 2000
+    ----> Doing a re-scan first
+    ----> Doing a re-scan first
+[#1] INFO:Eval -- HypoTestInverter::RunLimit - Result:    
+	Limit: mu < 102.451 +/- 3.80631 @ 95% CL
+500
+MU up obs = 102.451249407
+MU up exp = 110.988569072
+
+
+RooWorkspace(w_750) w_750 contents
+
+variables
+---------
+(k,mu,nZp_750,nbkg,var_mass)
+
+p.d.f.s
+-------
+RooHistPdf::Zprime_750_pdf[ pdfObs=(var_mass) ] = 0
+RooHistPdf::bkg_pdf[ pdfObs=(var_mass) ] = 0.0109141
+RooAddPdf::model_750[ exp_signal_yields_750 * Zprime_750_pdf + exp_bkg_yields * bkg_pdf ] = 0.0109141
+
+functions
+--------
+RooFormulaVar::exp_bkg_yields[ actualVars=(k,nbkg) formula="x[0]*x[1]" ] = 201.563
+RooFormulaVar::exp_signal_yields_750[ actualVars=(mu,nZp_750) formula="x[0]*x[1]" ] = 1.25194e-08
+
+datasets
+--------
+RooDataHist::data_hist(var_mass)
+
+embedded datasets (in pdfs and functions)
+-----------------------------------------
+RooDataHist::Zprime_750(var_mass)
+RooDataHist::bkg_hist(var_mass)
+
+named sets
+----------
+ModelConfig_750_NuisParams:(k)
+ModelConfig_750_Observables:(var_mass)
+ModelConfig_750_POI:(mu)
+
+generic objects
+---------------
+RooStats::ModelConfig::ModelConfig_750
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TOYS CALCULATION
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_750[ exp_signal_yields_750 * Zprime_750_pdf + exp_bkg_yields * bkg_pdf ] = 0.0107058
+Snapshot:                
+  1) 0x22b07900 RooRealVar:: mu = 0 +/- 9.12482  L(0 - 1000)  "mu"
+
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_750[ exp_signal_yields_750 * Zprime_750_pdf + exp_bkg_yields * bkg_pdf ] = 0.0107058
+Snapshot:                
+  1) 0x22b07900 RooRealVar:: mu = 1 +/- 9.12482  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: -1.70618e-05
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#0] PROGRESS:Generation -- generated toys: 500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 5000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 5500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 6000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 6500 / 7000
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Alt.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Alt.
+[#0] PROGRESS:Generation -- generated toys: 500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 2500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 3500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 4500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 5000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 5500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 6000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 6500 / 7000
+Observed significance with Toys MC
+For Z'750 p value --> 0.697714285714 and Z --> -0.517837819909
+[#1] INFO:InputArguments -- HypoTestInverter ---- Input models: 
+		 using as S+B (null) model     : sbmodel
+		 using as B (alternate) model  : bmodel
+
+[#1] INFO:Eval -- HypoTestInverter::GetInterval - run an automatic scan
+[#1] INFO:ObjectHandling -- RooWorkspace::saveSnaphot(w_750) replacing previous snapshot with name sbmodel__snapshot
+
+=== Using the following for sbmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_750[ exp_signal_yields_750 * Zprime_750_pdf + exp_bkg_yields * bkg_pdf ] = 0.000533605
+Snapshot:                
+  1) 0x32430830 RooRealVar:: mu = 1000 +/- 9.12482  L(0 - 1000)  "mu"
+
+
+=== Using the following for bmodel ===
+Observables:             RooArgSet:: = (var_mass)
+Parameters of Interest:  RooArgSet:: = (mu)
+Nuisance Parameters:     RooArgSet:: = (k)
+PDF:                     RooAddPdf::model_750[ exp_signal_yields_750 * Zprime_750_pdf + exp_bkg_yields * bkg_pdf ] = 0.000533605
+Snapshot:                
+  1) 0x32430830 RooRealVar:: mu = 0 +/- 9.12482  L(0 - 1000)  "mu"
+
+[#0] PROGRESS:Generation -- Test Statistic on data: 3257.06
+[#1] INFO:InputArguments -- Profiling conditional MLEs for Null.
+[#1] INFO:InputArguments -- Using a ToyMCSampler. Now configuring for Null.
+[#0] PROGRESS:Generation -- generated toys: 500 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1000 / 7000
+[#0] PROGRESS:Generation -- generated toys: 1500 / 7000

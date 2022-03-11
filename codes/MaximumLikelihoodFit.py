@@ -185,7 +185,7 @@ for mass in Zprime_masses:
         mc.SetPdf(model)
         mc.SetParametersOfInterest(ROOT.RooArgSet(w.var("mu")))
         mc.SetObservables(ROOT.RooArgSet(w.var("var_mass")))
-        mc.SetNuisanceParameters(ROOT.RooArgSet(w.var("k"))) #? k nuis par?
+        mc.SetNuisanceParameters(ROOT.RooArgSet(w.var("k"))) # k nuisance par
 
         getattr(w,'import')(mc)
         w.writeToFile("../run/Model_" + mass + ".root", True)
