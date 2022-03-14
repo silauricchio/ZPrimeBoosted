@@ -262,20 +262,7 @@ for mass in Zprime_masses:
         print("Observed significance with Toys MC")
         print("For Z'" + mass + " p value --> " + str(toymcs_p_value) + " and Z --> " + str(toymcs_significance))
 
-        del profll
-        del hc
-
-        hc = ROOT.RooStats.FrequentistCalculator(data, bModel, sbModel)
-        hc.SetToys(int(NTOYS), int(NTOYS))
-        hc.StoreFitInfo(True)
-        hc.UseSameAltToys()
-
         # HypoTestInverter for limits extraction
-        profll = ROOT.RooStats.ProfileLikelihoodTestStat(sbModel.GetPdf())
-        profll.SetMinimizer('Minuit2')
-        profll.SetOneSidedDiscovery(False)
-        profll.SetAlwaysReuseNLL(True)
-        profll.SetReuseNLL(True)
 
         profll.SetOneSided(True)
         toymcs.SetTestStatistic(profll)
